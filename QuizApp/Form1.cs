@@ -1,10 +1,16 @@
 namespace QuizApp
 {
-    public partial class Form1 : Form
+    public partial class QuizApp : Form
     {
-        public Form1()
+        public QuizApp()
         {
             InitializeComponent();
+        }
+
+        private void Work_quiz_Click(object sender, EventArgs e)
+        {
+            startQuizForm obj = new startQuizForm();
+            obj.Show();
         }
     }
 }

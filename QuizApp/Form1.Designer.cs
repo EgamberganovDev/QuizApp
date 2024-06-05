@@ -1,6 +1,6 @@
 ﻿namespace QuizApp
 {
-    partial class Form1
+    partial class QuizApp
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,20 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            Work_quiz = new Button();
             Load_quiz = new Button();
             Score_table = new Button();
             SuspendLayout();
             // 
-            // button1
+            // Work_quiz
             // 
-            button1.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(287, 61);
-            button1.Name = "button1";
-            button1.Size = new Size(205, 56);
-            button1.TabIndex = 0;
-            button1.Text = "Test Ishlash";
-            button1.UseVisualStyleBackColor = true;
+            Work_quiz.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            Work_quiz.Location = new Point(287, 61);
+            Work_quiz.Name = "Work_quiz";
+            Work_quiz.Size = new Size(205, 56);
+            Work_quiz.TabIndex = 0;
+            Work_quiz.Text = "Test Ishlash";
+            Work_quiz.UseVisualStyleBackColor = true;
+            Work_quiz.Click += Work_quiz_Click;
             // 
             // Load_quiz
             // 
@@ -63,22 +64,22 @@
             Score_table.Text = "Natijalar";
             Score_table.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // QuizApp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(Score_table);
             Controls.Add(Load_quiz);
-            Controls.Add(button1);
-            Name = "Form1";
-            Text = "Form1";
+            Controls.Add(Work_quiz);
+            Name = "QuizApp";
+            Text = "QuizApp";
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button button1;
+        private Button Work_quiz;
         private Button Load_quiz;
         private Button Score_table;
     }
