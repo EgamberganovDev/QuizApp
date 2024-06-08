@@ -68,7 +68,7 @@ namespace QuizApp
             }
             rd.Close();
 
-            if(index <= TestlarSoni - 1)
+            if (index <= TestlarSoni - 1)
             {
                 label1.Text = "Savol " + (index + 1).ToString();
                 listBox1.Items.Clear();

@@ -131,7 +131,7 @@
             button3.Location = new Point(625, 404);
             button3.Margin = new Padding(3, 4, 3, 4);
             button3.Name = "button3";
-            button3.Size = new Size(123, 31);
+            button3.Size = new Size(133, 31);
             button3.TabIndex = 7;
             button3.Text = "Testni yakunlash";
             button3.UseVisualStyleBackColor = false;
