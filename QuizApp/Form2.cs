@@ -26,5 +26,10 @@ namespace QuizApp
             Form3 obj = new Form3(FIO, FAN, test_soni);
             obj.Show();
         }
+
+        private void startQuizForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

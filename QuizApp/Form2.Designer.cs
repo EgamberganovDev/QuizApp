@@ -42,9 +42,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(63, 65);
+            label1.Location = new Point(55, 49);
             label1.Name = "label1";
-            label1.Size = new Size(130, 30);
+            label1.Size = new Size(109, 25);
             label1.TabIndex = 0;
             label1.Text = "Ism Familiya";
             // 
@@ -52,52 +52,56 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(63, 152);
+            label2.Location = new Point(55, 114);
             label2.Name = "label2";
-            label2.Size = new Size(46, 30);
+            label2.Size = new Size(39, 25);
             label2.TabIndex = 1;
             label2.Text = "Fan";
             // 
             // fio
             // 
-            fio.Location = new Point(212, 65);
+            fio.Location = new Point(186, 49);
+            fio.Margin = new Padding(3, 2, 3, 2);
             fio.Multiline = true;
             fio.Name = "fio";
-            fio.Size = new Size(227, 34);
+            fio.Size = new Size(199, 26);
             fio.TabIndex = 2;
             // 
             // courses
             // 
             courses.FormattingEnabled = true;
             courses.Items.AddRange(new object[] { "Dasturlash Asoslari", "Web Dasturlash", "Mobil Dasturlash", "Sun'iy Intellekt" });
-            courses.Location = new Point(212, 152);
+            courses.Location = new Point(186, 114);
+            courses.Margin = new Padding(3, 2, 3, 2);
             courses.Name = "courses";
-            courses.Size = new Size(227, 28);
+            courses.Size = new Size(199, 23);
             courses.TabIndex = 3;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(63, 237);
+            label3.Location = new Point(55, 178);
             label3.Name = "label3";
-            label3.Size = new Size(120, 30);
+            label3.Size = new Size(99, 25);
             label3.TabIndex = 4;
             label3.Text = "Testlar soni";
             // 
             // numbersOfQuiz
             // 
-            numbersOfQuiz.Location = new Point(212, 240);
+            numbersOfQuiz.Location = new Point(186, 180);
+            numbersOfQuiz.Margin = new Padding(3, 2, 3, 2);
             numbersOfQuiz.Name = "numbersOfQuiz";
-            numbersOfQuiz.Size = new Size(227, 27);
+            numbersOfQuiz.Size = new Size(199, 23);
             numbersOfQuiz.TabIndex = 5;
             // 
             // start_quiz
             // 
             start_quiz.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            start_quiz.Location = new Point(278, 323);
+            start_quiz.Location = new Point(243, 242);
+            start_quiz.Margin = new Padding(3, 2, 3, 2);
             start_quiz.Name = "start_quiz";
-            start_quiz.Size = new Size(161, 42);
+            start_quiz.Size = new Size(141, 32);
             start_quiz.TabIndex = 6;
             start_quiz.Text = "Testni boshlash";
             start_quiz.UseVisualStyleBackColor = true;
@@ -105,9 +109,9 @@
             // 
             // startQuizForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(571, 450);
+            ClientSize = new Size(500, 338);
             Controls.Add(start_quiz);
             Controls.Add(numbersOfQuiz);
             Controls.Add(label3);
@@ -115,8 +119,10 @@
             Controls.Add(fio);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "startQuizForm";
             Text = "Testni boshlash";
+            Load += startQuizForm_Load;
             ((System.ComponentModel.ISupportInitialize)numbersOfQuiz).EndInit();
             ResumeLayout(false);
             PerformLayout();
