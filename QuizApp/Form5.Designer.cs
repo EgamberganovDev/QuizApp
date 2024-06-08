@@ -139,6 +139,7 @@
             checkBox1.TabIndex = 10;
             checkBox1.Text = "To'gri javob";
             checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // checkBox2
             // 
@@ -149,6 +150,7 @@
             checkBox2.TabIndex = 11;
             checkBox2.Text = "To'gri javob";
             checkBox2.UseVisualStyleBackColor = true;
+            checkBox2.CheckedChanged += checkBox2_CheckedChanged;
             // 
             // checkBox3
             // 
@@ -159,6 +161,7 @@
             checkBox3.TabIndex = 12;
             checkBox3.Text = "To'gri javob";
             checkBox3.UseVisualStyleBackColor = true;
+            checkBox3.CheckedChanged += checkBox3_CheckedChanged;
             // 
             // checkBox4
             // 
@@ -169,6 +172,7 @@
             checkBox4.TabIndex = 13;
             checkBox4.Text = "To'gri javob";
             checkBox4.UseVisualStyleBackColor = true;
+            checkBox4.CheckedChanged += checkBox4_CheckedChanged;
             // 
             // button1
             // 
@@ -230,7 +234,7 @@
             Controls.Add(textBox1);
             Controls.Add(label1);
             Name = "Form5";
-            Text = "Form5";
+            Text = "Test Qo'shish";
             Load += Form5_Load;
             ResumeLayout(false);
             PerformLayout();
