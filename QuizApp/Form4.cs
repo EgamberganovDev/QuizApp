@@ -28,7 +28,19 @@ namespace QuizApp
 
         private void Form4_Load(object sender, EventArgs e)
         {
+            label1.Text = "Ism Familiya :" + IsmFamiliya;
+            label2.Text = "Fan: " + Fan;
+            label3.Text = "Jami testlar soni: " + TestlarSoni.ToString();
+            label4.Text = "Tog`ri javoblar soni: " + TJ.ToString();
+            int foiz = (int)((double)TJ / ((double)TestlarSoni) * 100);
+            int baho = 2;
 
+            if (foiz > 59 && foiz < 70) baho = 3;
+            if (foiz >= 70 && foiz < 89) baho = 4;
+            if (foiz >= 90) baho = 5;
+
+            label5.Text = (foiz.ToString() + "%");
+            label6.Text = (baho.ToString() + " baho");
         }
 
         private void label4_Click(object sender, EventArgs e)
