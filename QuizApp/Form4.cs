@@ -12,13 +12,23 @@ namespace QuizApp
 {
     public partial class Form4 : Form
     {
-        public Form4(string IsmFamiliya, string FanNomi, int TestlarSoni, int cnt)
+        string IsmFamiliya;
+        string Fan;
+        int TestlarSoni;
+        int TJ;
+
+        public Form4(string ismFamiliya, string fan, int testlarSoni, int tJ)
         {
             InitializeComponent();
+            IsmFamiliya = ismFamiliya;
+            Fan = fan;
+            TestlarSoni = testlarSoni;
+            TJ = tJ;
         }
 
         private void Form4_Load(object sender, EventArgs e)
         {
+
         }
     }
 }
