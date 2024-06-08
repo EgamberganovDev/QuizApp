@@ -42,10 +42,5 @@ namespace QuizApp
             label5.Text = (foiz.ToString() + "%");
             label6.Text = (baho.ToString() + " baho");
         }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
