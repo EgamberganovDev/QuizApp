@@ -37,10 +37,9 @@
             // Work_quiz
             // 
             Work_quiz.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            Work_quiz.Location = new Point(251, 46);
-            Work_quiz.Margin = new Padding(3, 2, 3, 2);
+            Work_quiz.Location = new Point(287, 61);
             Work_quiz.Name = "Work_quiz";
-            Work_quiz.Size = new Size(179, 42);
+            Work_quiz.Size = new Size(205, 56);
             Work_quiz.TabIndex = 0;
             Work_quiz.Text = "Test Ishlash";
             Work_quiz.UseVisualStyleBackColor = true;
@@ -49,21 +48,20 @@
             // Load_quiz
             // 
             Load_quiz.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            Load_quiz.Location = new Point(251, 111);
-            Load_quiz.Margin = new Padding(3, 2, 3, 2);
+            Load_quiz.Location = new Point(287, 148);
             Load_quiz.Name = "Load_quiz";
-            Load_quiz.Size = new Size(179, 42);
+            Load_quiz.Size = new Size(205, 56);
             Load_quiz.TabIndex = 1;
             Load_quiz.Text = "Test Yuklash";
             Load_quiz.UseVisualStyleBackColor = true;
+            Load_quiz.Click += Load_quiz_Click;
             // 
             // Score_table
             // 
             Score_table.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            Score_table.Location = new Point(251, 176);
-            Score_table.Margin = new Padding(3, 2, 3, 2);
+            Score_table.Location = new Point(287, 235);
             Score_table.Name = "Score_table";
-            Score_table.Size = new Size(179, 42);
+            Score_table.Size = new Size(205, 56);
             Score_table.TabIndex = 2;
             Score_table.Text = "Natijalar";
             Score_table.UseVisualStyleBackColor = true;
@@ -71,24 +69,22 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(251, 245);
-            button1.Margin = new Padding(3, 2, 3, 2);
+            button1.Location = new Point(287, 327);
             button1.Name = "button1";
-            button1.Size = new Size(179, 42);
+            button1.Size = new Size(205, 56);
             button1.TabIndex = 3;
             button1.Text = "About";
             button1.UseVisualStyleBackColor = true;
             // 
             // QuizApp
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 338);
+            ClientSize = new Size(800, 451);
             Controls.Add(button1);
             Controls.Add(Score_table);
             Controls.Add(Load_quiz);
             Controls.Add(Work_quiz);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "QuizApp";
             Text = "QuizApp";
             ResumeLayout(false);
