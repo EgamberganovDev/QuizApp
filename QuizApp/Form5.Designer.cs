@@ -45,6 +45,13 @@
             richTextBox1 = new RichTextBox();
             comboBox1 = new ComboBox();
             label6 = new Label();
+            button2 = new Button();
+            panel1 = new Panel();
+            button4 = new Button();
+            button3 = new Button();
+            textBox5 = new TextBox();
+            label7 = new Label();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -183,6 +190,7 @@
             button1.TabIndex = 14;
             button1.Text = "Qo'shish";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // richTextBox1
             // 
@@ -210,12 +218,75 @@
             label6.TabIndex = 17;
             label6.Text = "Fan tanlovi";
             // 
+            // button2
+            // 
+            button2.Location = new Point(579, 106);
+            button2.Name = "button2";
+            button2.Size = new Size(116, 29);
+            button2.TabIndex = 18;
+            button2.Text = "Fan qo'shish";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(button4);
+            panel1.Controls.Add(button3);
+            panel1.Controls.Add(textBox5);
+            panel1.Controls.Add(label7);
+            panel1.Location = new Point(507, 152);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(248, 174);
+            panel1.TabIndex = 19;
+            // 
+            // button4
+            // 
+            button4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            button4.Location = new Point(130, 115);
+            button4.Name = "button4";
+            button4.Size = new Size(94, 29);
+            button4.TabIndex = 3;
+            button4.Text = "Yopish";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
+            // button3
+            // 
+            button3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            button3.Location = new Point(23, 115);
+            button3.Name = "button3";
+            button3.Size = new Size(94, 29);
+            button3.TabIndex = 2;
+            button3.Text = "Qo'shish";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(23, 58);
+            textBox5.Multiline = true;
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(201, 34);
+            textBox5.TabIndex = 1;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.Location = new Point(23, 20);
+            label7.Name = "label7";
+            label7.Size = new Size(89, 25);
+            label7.TabIndex = 0;
+            label7.Text = "Fan nomi";
+            // 
             // Form5
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(800, 641);
+            Controls.Add(panel1);
+            Controls.Add(button2);
             Controls.Add(label6);
             Controls.Add(comboBox1);
             Controls.Add(richTextBox1);
@@ -236,6 +307,8 @@
             Name = "Form5";
             Text = "Test Qo'shish";
             Load += Form5_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -259,5 +332,11 @@
         private RichTextBox richTextBox1;
         private ComboBox comboBox1;
         private Label label6;
+        private Button button2;
+        private Panel panel1;
+        private Button button4;
+        private Button button3;
+        private TextBox textBox5;
+        private Label label7;
     }
 }

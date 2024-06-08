@@ -17,14 +17,39 @@ namespace QuizApp
             InitializeComponent();
         }
 
-        private void Form5_Load(object sender, EventArgs e)
+        void updateComboBox()
         {
+            comboBox1.Items.Clear();
             DirectoryInfo di = new DirectoryInfo(@"Testlar");
             foreach (var fi in di.GetFiles())
             {
                 if (fi.Name.EndsWith(".txt"))
-                    comboBox1.Items.Add(fi.Name.Substring(0, fi.Name.Length - 4));
+                {
+                    int cntTest = CountLinesInFile(fi.FullName) / 5;
+                    comboBox1.Items.Add(fi.Name.Substring(0, fi.Name.Length - 4) + $" ({cntTest})");
+                }
             }
+        }
+
+        static int CountLinesInFile(string filePath)
+        {
+            int lineCount = 0;
+
+            StreamReader reader = new StreamReader(filePath);
+            while (reader.ReadLine() != null)
+            {
+                lineCount++;
+            }
+            reader.Close();
+
+            return lineCount;
+        }
+
+        private void Form5_Load(object sender, EventArgs e)
+        {
+            panel1.Visible = false;
+
+            updateComboBox();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -101,6 +126,71 @@ namespace QuizApp
                 checkBox2.Enabled = true;
                 checkBox3.Enabled = true;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            panel1.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            File.Create(@$"Testlar/{textBox5.Text.ToString()}.txt").Close();
+            updateComboBox();
+            panel1.Visible = false;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            panel1.Visible = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string fannomi = comboBox1.SelectedItem.ToString()!;
+            StreamWriter writer = new StreamWriter($@"Testlar/{fannomi.Substring(0, fannomi.Length - 4)}.txt", true);
+
+            writer.WriteLine(richTextBox1.Text);
+
+            if (checkBox1.Checked)
+            {
+                writer.WriteLine("*" + textBox1.Text);
+                writer.WriteLine(textBox2.Text);
+                writer.WriteLine(textBox3.Text);
+                writer.WriteLine(textBox4.Text);
+            }
+            
+            if (checkBox2.Checked)
+            {
+                writer.WriteLine(textBox1.Text);
+                writer.WriteLine("*" + textBox2.Text);
+                writer.WriteLine(textBox3.Text);
+                writer.WriteLine(textBox4.Text);
+            }
+            
+            if (checkBox3.Checked)
+            {
+                writer.WriteLine(textBox1.Text);
+                writer.WriteLine(textBox2.Text);
+                writer.WriteLine("*" + textBox3.Text);
+                writer.WriteLine(textBox4.Text);
+            }
+            
+            if (checkBox4.Checked)
+            {
+                writer.WriteLine(textBox1.Text);
+                writer.WriteLine(textBox2.Text);
+                writer.WriteLine(textBox3.Text);
+                writer.WriteLine("*" + textBox4.Text);
+            }
+            writer.Close();
+            comboBox1.ResetText();
+            richTextBox1.Clear();
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            textBox4.Clear();
+            updateComboBox();
         }
     }
 }

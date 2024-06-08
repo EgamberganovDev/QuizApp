@@ -28,7 +28,7 @@ namespace QuizApp
 
         private void Form4_Load(object sender, EventArgs e)
         {
-            label1.Text = "Ism Familiya :" + IsmFamiliya;
+            label1.Text = "Ism Familiya : " + IsmFamiliya;
             label2.Text = "Fan: " + Fan;
             label3.Text = "Jami testlar soni: " + TestlarSoni.ToString();
             label4.Text = "Tog`ri javoblar soni: " + TJ.ToString();
@@ -41,6 +41,11 @@ namespace QuizApp
 
             label5.Text = (foiz.ToString() + "%");
             label6.Text = (baho.ToString() + " baho");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
