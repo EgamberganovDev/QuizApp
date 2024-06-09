@@ -87,9 +87,18 @@ namespace QuizApp
                 int cnt = 0;
                 for (int j = 0; j < TogriJavoblar.Length; i++)
                 {
-                    if (TogriJavoblar[j] == BelgilanganJavoblar[j]) cnt++;
+                    if (TogriJavoblar[j] == BelgilanganJavoblar[j])
+                    {
+                        trueResults.Add(i + 1, BelgilanganJavoblar[i]);
+                        cnt++;
+                    }
+                    else
+                    {
+                        falseResults.Add(i + 1, BelgilanganJavoblar[i]);
+                    }
                 }
 
+                writeResults();
                 Form4 obj = new Form4(IsmFamiliya, FanNomi, TestlarSoni, cnt);
                 obj.Show();
                 this.Close();
@@ -209,13 +218,48 @@ namespace QuizApp
         {
             string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             string quizAppPath = Path.Combine(userDocumentsPath, "QuizApp");
-            string packagePath = Path.Combine(quizAppPath, "Results");
-            string path1 = Path.Combine(packagePath, "trueResults.txt");
-            string path2 = Path.Combine(packagePath, "falseResults.txt");
+            string packagePath1 = Path.Combine(quizAppPath, "Results");
+            string packagePath2 = Path.Combine(quizAppPath, "TrueAnswers");
+            string path1 = Path.Combine(packagePath1, "trueResults.txt");
+            string path2 = Path.Combine(packagePath1, "falseResults.txt");
+            string path3 = Path.Combine(packagePath2, "TrueAnswers.txt");
 
-            if (!Directory.Exists(packagePath))
+            if (!Directory.Exists(packagePath2))
             {
-                Directory.CreateDirectory(packagePath);
+                Directory.CreateDirectory(packagePath2);
+                if (File.Exists(path3))
+                {
+                    StreamWriter writer = File.AppendText(path3);
+
+                    writer.WriteLine($"Fan:{FanNomi}");
+
+                    for (int i = 0; i <= TogriJavoblar.Length; i++)
+                    {
+                        writer.WriteLine($"{i + 1}:{TogriJavoblar[i]}");
+                    }
+
+                    writer.WriteLine("====================");
+                    writer.Close();
+                }
+                else
+                {
+                    StreamWriter writer = File.CreateText(path3);
+
+                    writer.WriteLine($"Fan:{FanNomi}");
+
+                    for (int i = 0; i <= TogriJavoblar.Length; i++)
+                    {
+                        writer.WriteLine($"{i + 1}:{TogriJavoblar[i]}");
+                    }
+
+                    writer.WriteLine("====================");
+                    writer.Close();
+                }
+            }
+
+            if (!Directory.Exists(packagePath1))
+            {
+                Directory.CreateDirectory(packagePath1);
                 if (File.Exists(path1) && File.Exists(path2))
                 {
                     StreamWriter writer1 = File.AppendText(path1);
