@@ -31,7 +31,7 @@
             Work_quiz = new Button();
             Load_quiz = new Button();
             Score_table = new Button();
-            button1 = new Button();
+            about = new Button();
             SuspendLayout();
             // 
             // Work_quiz
@@ -65,23 +65,25 @@
             Score_table.TabIndex = 2;
             Score_table.Text = "Natijalar";
             Score_table.UseVisualStyleBackColor = true;
+            Score_table.Click += Score_table_Click;
             // 
-            // button1
+            // about
             // 
-            button1.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(287, 327);
-            button1.Name = "button1";
-            button1.Size = new Size(205, 56);
-            button1.TabIndex = 3;
-            button1.Text = "About";
-            button1.UseVisualStyleBackColor = true;
+            about.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            about.Location = new Point(287, 327);
+            about.Name = "about";
+            about.Size = new Size(205, 56);
+            about.TabIndex = 3;
+            about.Text = "About";
+            about.UseVisualStyleBackColor = true;
+            about.Click += about_Click;
             // 
             // QuizApp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 451);
-            Controls.Add(button1);
+            Controls.Add(about);
             Controls.Add(Score_table);
             Controls.Add(Load_quiz);
             Controls.Add(Work_quiz);
@@ -95,6 +97,6 @@
         private Button Work_quiz;
         private Button Load_quiz;
         private Button Score_table;
-        private Button button1;
+        private Button about;
     }
 }
