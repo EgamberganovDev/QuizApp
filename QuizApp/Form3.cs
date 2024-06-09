@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,8 @@ namespace QuizApp
 
         private static string[] TogriJavoblar;
         private static string[] BelgilanganJavoblar;
+        private static Dictionary<int, string> trueResults = new Dictionary<int, string>();
+        private static Dictionary<int, string> falseResults = new Dictionary<int, string>();
 
         public Form3(string fio, string fan, int test_soni, string filepath)
         {
@@ -68,7 +71,7 @@ namespace QuizApp
             }
             rd.Close();
 
-            if (index <= TestlarSoni - 1)
+            if (index < TestlarSoni)
             {
                 label1.Text = "Savol " + (index + 1).ToString();
                 listBox1.Items.Clear();
@@ -103,9 +106,18 @@ namespace QuizApp
             int cnt = 0;
             for (int i = 0; i < TogriJavoblar.Length; i++)
             {
-                if (TogriJavoblar[i] == BelgilanganJavoblar[i]) cnt++;
+                if (TogriJavoblar[i] == BelgilanganJavoblar[i])
+                {
+                    trueResults.Add(i + 1, BelgilanganJavoblar[i]);
+                    cnt++;
+                }
+                else
+                {
+                    falseResults.Add(i + 1, BelgilanganJavoblar[i]);
+                }
             }
 
+            writeResults();
             Form4 obj = new Form4(IsmFamiliya, FanNomi, TestlarSoni, cnt);
             obj.Show();
             this.Close();
@@ -131,7 +143,6 @@ namespace QuizApp
 
                 index++;
                 if (index > 0) button1.Enabled = true;
-                if (index + 1 == TogriJavoblar.Length) button2.Enabled = false;
 
                 label1.Text = "Savol " + (index + 1).ToString();
                 listBox1.Items.Clear();
@@ -149,9 +160,18 @@ namespace QuizApp
                     int cnt = 0;
                     for (int i = 0; i < TogriJavoblar.Length; i++)
                     {
-                        if (TogriJavoblar[i] == BelgilanganJavoblar[i]) cnt++;
+                        if (TogriJavoblar[i] == BelgilanganJavoblar[i])
+                        {
+                            trueResults.Add(i + 1, BelgilanganJavoblar[i]);
+                            cnt++;
+                        }
+                        else
+                        {
+                            falseResults.Add(i + 1, BelgilanganJavoblar[i]);
+                        }
                     }
 
+                    writeResults();
                     Form4 obj = new Form4(IsmFamiliya, FanNomi, TestlarSoni, cnt);
                     obj.Show();
                     this.Close();
@@ -183,6 +203,31 @@ namespace QuizApp
             if (radioButton2.Text == BelgilanganJavoblar[index]) radioButton2.Checked = true;
             if (radioButton3.Text == BelgilanganJavoblar[index]) radioButton3.Checked = true;
             if (radioButton4.Text == BelgilanganJavoblar[index]) radioButton4.Checked = true;
+        }
+
+        private void writeResults()
+        {
+            string path1 = @"Results/trueResults.txt";
+            string path2 = @"Results/falseResults.txt";
+
+            StreamWriter writer1 = new StreamWriter(path1, true);
+            StreamWriter writer2 = new StreamWriter(path2, true);
+            writer1.WriteLine($"Foydalanuvchi {IsmFamiliya}, Fan {FanNomi}, Testlar soni {TestlarSoni}");
+            
+            foreach(var result in trueResults)
+            {
+                writer1.WriteLine($"{result.Key}:{result.Value}");
+            }
+            writer1.WriteLine("====================");
+            writer1.Close();
+
+            writer2.WriteLine($"Foydalanuvchi {IsmFamiliya}, Fan {FanNomi}, Testlar soni {TestlarSoni}");
+            foreach (var result in falseResults)
+            {
+                writer2.WriteLine($"{result.Key}:{result.Value}");
+            }
+            writer2.WriteLine("====================");
+            writer2.Close();
         }
     }
 }
