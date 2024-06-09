@@ -56,7 +56,10 @@ namespace QuizApp
 
         private void startQuizForm_Load(object sender, EventArgs e)
         {
-            DirectoryInfo di = new DirectoryInfo(@"Testlar");
+            string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string quizAppPath = Path.Combine(userDocumentsPath, "QuizApp");
+            string testsDirectory = Path.Combine(quizAppPath, "Testlar");
+            DirectoryInfo di = new DirectoryInfo(testsDirectory);
             foreach (var fi in di.GetFiles())
             {
                 filepath = fi.FullName;

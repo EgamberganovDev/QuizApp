@@ -208,13 +208,58 @@ namespace QuizApp
         private void writeResults()
         {
             string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string packagePath = Path.Combine(userDocumentsPath, "Results");
+            string quizAppPath = Path.Combine(userDocumentsPath, "QuizApp");
+            string packagePath = Path.Combine(quizAppPath, "Results");
             string path1 = Path.Combine(packagePath, "trueResults.txt");
             string path2 = Path.Combine(packagePath, "falseResults.txt");
 
             if (!Directory.Exists(packagePath))
             {
                 Directory.CreateDirectory(packagePath);
+                if (File.Exists(path1) && File.Exists(path2))
+                {
+                    StreamWriter writer1 = File.AppendText(path1);
+                    StreamWriter writer2 = File.AppendText(path2);
+
+                    writer1.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, Testlar soni:{TestlarSoni}");
+
+                    foreach (var result in trueResults)
+                    {
+                        writer1.WriteLine($"{result.Key}:{result.Value}");
+                    }
+                    writer1.WriteLine("====================");
+                    writer1.Close();
+
+                    writer2.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, Testlar soni:{TestlarSoni}");
+                    foreach (var result in falseResults)
+                    {
+                        writer2.WriteLine($"{result.Key}:{result.Value}");
+                    }
+                    writer2.WriteLine("====================");
+                    writer2.Close();
+                }
+                else
+                {
+                    StreamWriter writer1 = File.CreateText(path1);
+                    StreamWriter writer2 = File.CreateText(path2);
+
+                    writer1.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, Testlar soni:{TestlarSoni}");
+
+                    foreach (var result in trueResults)
+                    {
+                        writer1.WriteLine($"{result.Key}:{result.Value}");
+                    }
+                    writer1.WriteLine("====================");
+                    writer1.Close();
+
+                    writer2.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, Testlar soni:{TestlarSoni}");
+                    foreach (var result in falseResults)
+                    {
+                        writer2.WriteLine($"{result.Key}:{result.Value}");
+                    }
+                    writer2.WriteLine("====================");
+                    writer2.Close();
+                }
             }
             else
             {

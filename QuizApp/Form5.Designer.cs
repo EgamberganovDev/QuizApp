@@ -51,6 +51,8 @@
             button3 = new Button();
             textBox5 = new TextBox();
             label7 = new Label();
+            button5 = new Button();
+            openFileDialog1 = new OpenFileDialog();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -279,12 +281,28 @@
             label7.TabIndex = 0;
             label7.Text = "Fan nomi";
             // 
+            // button5
+            // 
+            button5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            button5.Location = new Point(579, 513);
+            button5.Name = "button5";
+            button5.Size = new Size(187, 36);
+            button5.TabIndex = 20;
+            button5.Text = "Text Fayl orqali yuklash";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Form5
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(800, 641);
+            Controls.Add(button5);
             Controls.Add(panel1);
             Controls.Add(button2);
             Controls.Add(label6);
@@ -338,5 +356,7 @@
         private Button button3;
         private TextBox textBox5;
         private Label label7;
+        private Button button5;
+        private OpenFileDialog openFileDialog1;
     }
 }

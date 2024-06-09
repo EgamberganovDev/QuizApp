@@ -21,7 +21,10 @@ namespace QuizApp
         void updateComboBox()
         {
             comboBox1.Items.Clear();
-            DirectoryInfo di = new DirectoryInfo(@"Testlar");
+            string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string quizAppPath = Path.Combine(userDocumentsPath, "QuizApp");
+            string testsDirectory = Path.Combine(quizAppPath, "Testlar");
+            DirectoryInfo di = new DirectoryInfo(testsDirectory);
             foreach (var fi in di.GetFiles())
             {
                 if (fi.Name.EndsWith(".txt"))
@@ -136,9 +139,24 @@ namespace QuizApp
 
         private void button3_Click(object sender, EventArgs e)
         {
-            File.Create(@$"Testlar/{textBox5.Text.ToString()}.txt").Close();
-            updateComboBox();
-            panel1.Visible = false;
+            string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string quizAppPath = Path.Combine(userDocumentsPath, "QuizApp");
+            string testsDirectory = Path.Combine(quizAppPath, "Testlar");
+            string testFilePath = Path.Combine(testsDirectory, $"{textBox5.Text}.txt");
+
+            if (!Directory.Exists(testsDirectory))
+            {
+                Directory.CreateDirectory(testsDirectory);
+                File.Create(testFilePath).Close();
+                updateComboBox();
+                panel1.Visible = false;
+            }
+            else
+            {
+                File.Create(testFilePath).Close();
+                updateComboBox();
+                panel1.Visible = false;
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -150,12 +168,101 @@ namespace QuizApp
         {
             string fannomi = comboBox1.SelectedItem.ToString()!;
             string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string packagePath = Path.Combine(userDocumentsPath, "Testlar");
+            string quizAppPath = Path.Combine(userDocumentsPath, "QuizApp");
+            string packagePath = Path.Combine(quizAppPath, "Testlar");
             string path = Path.Combine(packagePath, $"{fannomi.Substring(0, fannomi.Length - 4)}.txt");
 
             if (!Directory.Exists(packagePath))
             {
                 Directory.CreateDirectory(packagePath);
+                if (File.Exists(path))
+                {
+                    StreamWriter writer = File.CreateText(path);
+                    writer.WriteLine(richTextBox1.Text);
+                    if (checkBox1.Checked)
+                    {
+                        writer.WriteLine("*" + textBox1.Text);
+                        writer.WriteLine(textBox2.Text);
+                        writer.WriteLine(textBox3.Text);
+                        writer.WriteLine(textBox4.Text);
+                    }
+
+                    if (checkBox2.Checked)
+                    {
+                        writer.WriteLine(textBox1.Text);
+                        writer.WriteLine("*" + textBox2.Text);
+                        writer.WriteLine(textBox3.Text);
+                        writer.WriteLine(textBox4.Text);
+                    }
+
+                    if (checkBox3.Checked)
+                    {
+                        writer.WriteLine(textBox1.Text);
+                        writer.WriteLine(textBox2.Text);
+                        writer.WriteLine("*" + textBox3.Text);
+                        writer.WriteLine(textBox4.Text);
+                    }
+
+                    if (checkBox4.Checked)
+                    {
+                        writer.WriteLine(textBox1.Text);
+                        writer.WriteLine(textBox2.Text);
+                        writer.WriteLine(textBox3.Text);
+                        writer.WriteLine("*" + textBox4.Text);
+                    }
+                    writer.Close();
+                    comboBox1.ResetText();
+                    richTextBox1.Clear();
+                    textBox1.Clear();
+                    textBox2.Clear();
+                    textBox3.Clear();
+                    textBox4.Clear();
+                    updateComboBox();
+                }
+                else
+                {
+                    StreamWriter writer = File.AppendText(path);
+                    writer.WriteLine(richTextBox1.Text);
+                    if (checkBox1.Checked)
+                    {
+                        writer.WriteLine("*" + textBox1.Text);
+                        writer.WriteLine(textBox2.Text);
+                        writer.WriteLine(textBox3.Text);
+                        writer.WriteLine(textBox4.Text);
+                    }
+
+                    if (checkBox2.Checked)
+                    {
+                        writer.WriteLine(textBox1.Text);
+                        writer.WriteLine("*" + textBox2.Text);
+                        writer.WriteLine(textBox3.Text);
+                        writer.WriteLine(textBox4.Text);
+                    }
+
+                    if (checkBox3.Checked)
+                    {
+                        writer.WriteLine(textBox1.Text);
+                        writer.WriteLine(textBox2.Text);
+                        writer.WriteLine("*" + textBox3.Text);
+                        writer.WriteLine(textBox4.Text);
+                    }
+
+                    if (checkBox4.Checked)
+                    {
+                        writer.WriteLine(textBox1.Text);
+                        writer.WriteLine(textBox2.Text);
+                        writer.WriteLine(textBox3.Text);
+                        writer.WriteLine("*" + textBox4.Text);
+                    }
+                    writer.Close();
+                    comboBox1.ResetText();
+                    richTextBox1.Clear();
+                    textBox1.Clear();
+                    textBox2.Clear();
+                    textBox3.Clear();
+                    textBox4.Clear();
+                    updateComboBox();
+                }
             }
             else
             {
@@ -247,6 +354,29 @@ namespace QuizApp
                     textBox4.Clear();
                     updateComboBox();
                 }
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Filter = "Text Files (*.txt)|*.txt";
+            openFileDialog1.Title = "Bir TXT fayl tanlang";
+            openFileDialog1.FileName = "";
+
+            if(openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string selectedFilePath = openFileDialog1.FileName;
+                string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                string quizAppPath = Path.Combine(userDocumentsPath, "QuizApp");
+                string targetDirectory = Path.Combine(quizAppPath, "Testlar");
+                string targetFilePath = Path.Combine(targetDirectory, Path.GetFileName(selectedFilePath));
+
+                if (!Directory.Exists(targetDirectory))
+                {
+                    Directory.CreateDirectory(targetDirectory);
+                    File.Copy(selectedFilePath, targetFilePath, true);
+                }
+                else File.Copy(selectedFilePath, targetFilePath, true);
             }
         }
     }
