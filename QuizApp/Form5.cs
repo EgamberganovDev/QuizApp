@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -148,49 +149,105 @@ namespace QuizApp
         private void button1_Click(object sender, EventArgs e)
         {
             string fannomi = comboBox1.SelectedItem.ToString()!;
-            StreamWriter writer = new StreamWriter($@"Testlar/{fannomi.Substring(0, fannomi.Length - 4)}.txt", true);
+            string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string packagePath = Path.Combine(userDocumentsPath, "Testlar");
+            string path = Path.Combine(packagePath, $"{fannomi.Substring(0, fannomi.Length - 4)}.txt");
 
-            writer.WriteLine(richTextBox1.Text);
+            if (!Directory.Exists(packagePath))
+            {
+                Directory.CreateDirectory(packagePath);
+            }
+            else
+            {
+                if (File.Exists(path))
+                {
+                    StreamWriter writer = File.CreateText(path);
+                    writer.WriteLine(richTextBox1.Text);
+                    if (checkBox1.Checked)
+                    {
+                        writer.WriteLine("*" + textBox1.Text);
+                        writer.WriteLine(textBox2.Text);
+                        writer.WriteLine(textBox3.Text);
+                        writer.WriteLine(textBox4.Text);
+                    }
 
-            if (checkBox1.Checked)
-            {
-                writer.WriteLine("*" + textBox1.Text);
-                writer.WriteLine(textBox2.Text);
-                writer.WriteLine(textBox3.Text);
-                writer.WriteLine(textBox4.Text);
+                    if (checkBox2.Checked)
+                    {
+                        writer.WriteLine(textBox1.Text);
+                        writer.WriteLine("*" + textBox2.Text);
+                        writer.WriteLine(textBox3.Text);
+                        writer.WriteLine(textBox4.Text);
+                    }
+
+                    if (checkBox3.Checked)
+                    {
+                        writer.WriteLine(textBox1.Text);
+                        writer.WriteLine(textBox2.Text);
+                        writer.WriteLine("*" + textBox3.Text);
+                        writer.WriteLine(textBox4.Text);
+                    }
+
+                    if (checkBox4.Checked)
+                    {
+                        writer.WriteLine(textBox1.Text);
+                        writer.WriteLine(textBox2.Text);
+                        writer.WriteLine(textBox3.Text);
+                        writer.WriteLine("*" + textBox4.Text);
+                    }
+                    writer.Close();
+                    comboBox1.ResetText();
+                    richTextBox1.Clear();
+                    textBox1.Clear();
+                    textBox2.Clear();
+                    textBox3.Clear();
+                    textBox4.Clear();
+                    updateComboBox();
+                }
+                else
+                {
+                    StreamWriter writer = File.AppendText(path);
+                    writer.WriteLine(richTextBox1.Text);
+                    if (checkBox1.Checked)
+                    {
+                        writer.WriteLine("*" + textBox1.Text);
+                        writer.WriteLine(textBox2.Text);
+                        writer.WriteLine(textBox3.Text);
+                        writer.WriteLine(textBox4.Text);
+                    }
+
+                    if (checkBox2.Checked)
+                    {
+                        writer.WriteLine(textBox1.Text);
+                        writer.WriteLine("*" + textBox2.Text);
+                        writer.WriteLine(textBox3.Text);
+                        writer.WriteLine(textBox4.Text);
+                    }
+
+                    if (checkBox3.Checked)
+                    {
+                        writer.WriteLine(textBox1.Text);
+                        writer.WriteLine(textBox2.Text);
+                        writer.WriteLine("*" + textBox3.Text);
+                        writer.WriteLine(textBox4.Text);
+                    }
+
+                    if (checkBox4.Checked)
+                    {
+                        writer.WriteLine(textBox1.Text);
+                        writer.WriteLine(textBox2.Text);
+                        writer.WriteLine(textBox3.Text);
+                        writer.WriteLine("*" + textBox4.Text);
+                    }
+                    writer.Close();
+                    comboBox1.ResetText();
+                    richTextBox1.Clear();
+                    textBox1.Clear();
+                    textBox2.Clear();
+                    textBox3.Clear();
+                    textBox4.Clear();
+                    updateComboBox();
+                }
             }
-            
-            if (checkBox2.Checked)
-            {
-                writer.WriteLine(textBox1.Text);
-                writer.WriteLine("*" + textBox2.Text);
-                writer.WriteLine(textBox3.Text);
-                writer.WriteLine(textBox4.Text);
-            }
-            
-            if (checkBox3.Checked)
-            {
-                writer.WriteLine(textBox1.Text);
-                writer.WriteLine(textBox2.Text);
-                writer.WriteLine("*" + textBox3.Text);
-                writer.WriteLine(textBox4.Text);
-            }
-            
-            if (checkBox4.Checked)
-            {
-                writer.WriteLine(textBox1.Text);
-                writer.WriteLine(textBox2.Text);
-                writer.WriteLine(textBox3.Text);
-                writer.WriteLine("*" + textBox4.Text);
-            }
-            writer.Close();
-            comboBox1.ResetText();
-            richTextBox1.Clear();
-            textBox1.Clear();
-            textBox2.Clear();
-            textBox3.Clear();
-            textBox4.Clear();
-            updateComboBox();
         }
     }
 }

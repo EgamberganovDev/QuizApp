@@ -207,27 +207,62 @@ namespace QuizApp
 
         private void writeResults()
         {
-            string path1 = @"Results/trueResults.txt";
-            string path2 = @"Results/falseResults.txt";
+            string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string packagePath = Path.Combine(userDocumentsPath, "Results");
+            string path1 = Path.Combine(packagePath, "trueResults.txt");
+            string path2 = Path.Combine(packagePath, "falseResults.txt");
 
-            StreamWriter writer1 = new StreamWriter(path1, true);
-            StreamWriter writer2 = new StreamWriter(path2, true);
-            writer1.WriteLine($"Foydalanuvchi {IsmFamiliya}, Fan {FanNomi}, Testlar soni {TestlarSoni}");
-            
-            foreach(var result in trueResults)
+            if (!Directory.Exists(packagePath))
             {
-                writer1.WriteLine($"{result.Key}:{result.Value}");
+                Directory.CreateDirectory(packagePath);
             }
-            writer1.WriteLine("====================");
-            writer1.Close();
+            else
+            {
+                if(File.Exists(path1) && File.Exists(path2))
+                {
+                    StreamWriter writer1 = File.AppendText(path1);
+                    StreamWriter writer2 = File.AppendText(path2);
 
-            writer2.WriteLine($"Foydalanuvchi {IsmFamiliya}, Fan {FanNomi}, Testlar soni {TestlarSoni}");
-            foreach (var result in falseResults)
-            {
-                writer2.WriteLine($"{result.Key}:{result.Value}");
+                    writer1.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, Testlar soni:{TestlarSoni}");
+
+                    foreach (var result in trueResults)
+                    {
+                        writer1.WriteLine($"{result.Key}:{result.Value}");
+                    }
+                    writer1.WriteLine("====================");
+                    writer1.Close();
+
+                    writer2.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, Testlar soni:{TestlarSoni}");
+                    foreach (var result in falseResults)
+                    {
+                        writer2.WriteLine($"{result.Key}:{result.Value}");
+                    }
+                    writer2.WriteLine("====================");
+                    writer2.Close();
+                }
+                else
+                {
+                    StreamWriter writer1 = File.CreateText(path1);
+                    StreamWriter writer2 = File.CreateText(path2);
+
+                    writer1.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, Testlar soni:{TestlarSoni}");
+
+                    foreach (var result in trueResults)
+                    {
+                        writer1.WriteLine($"{result.Key}:{result.Value}");
+                    }
+                    writer1.WriteLine("====================");
+                    writer1.Close();
+
+                    writer2.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, Testlar soni:{TestlarSoni}");
+                    foreach (var result in falseResults)
+                    {
+                        writer2.WriteLine($"{result.Key}:{result.Value}");
+                    }
+                    writer2.WriteLine("====================");
+                    writer2.Close();
+                }
             }
-            writer2.WriteLine("====================");
-            writer2.Close();
         }
     }
 }
