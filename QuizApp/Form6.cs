@@ -16,5 +16,15 @@ namespace QuizApp
         {
             InitializeComponent();
         }
+
+        private void Form6_Load(object sender, EventArgs e)
+        {
+            MyReader nameReader = new MyReader();
+            List<string> names = nameReader.userNames();
+            foreach (string name in names)
+            {
+                listBox1.Items.Add(name);
+            }
+        }
     }
 }

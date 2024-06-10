@@ -16,5 +16,10 @@ namespace QuizApp
         {
             InitializeComponent();
         }
+
+        private void Form7_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

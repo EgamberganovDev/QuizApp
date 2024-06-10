@@ -21,8 +21,11 @@ namespace QuizApp
         private string filePath;
 
         private static int index;
+        private static int True_cnt;
+        private static int False_cnt;
         private static string[] s;
 
+        MyReader mr = new MyReader();
         private static string[] TogriJavoblar;
         private static string[] BelgilanganJavoblar;
         private static Dictionary<int, string> trueResults = new Dictionary<int, string>();
@@ -45,6 +48,8 @@ namespace QuizApp
         {
             fan_nomi.Text = FanNomi.ToString();
             index = 0;
+            True_cnt = 0;
+            False_cnt = 0;
 
             if (index == 0) button1.Enabled = false;
 
@@ -84,22 +89,26 @@ namespace QuizApp
             }
             else
             {
-                int cnt = 0;
+                int cnt1 = 0;
+                int cnt2 = 0;
                 for (int j = 0; j < TogriJavoblar.Length; i++)
                 {
                     if (TogriJavoblar[j] == BelgilanganJavoblar[j])
                     {
                         trueResults.Add(i + 1, BelgilanganJavoblar[i]);
-                        cnt++;
+                        cnt1++;
                     }
                     else
                     {
                         falseResults.Add(i + 1, BelgilanganJavoblar[i]);
+                        cnt2++;
                     }
                 }
 
+                True_cnt = cnt1;
+                False_cnt = cnt2;
                 writeResults();
-                Form4 obj = new Form4(IsmFamiliya, FanNomi, TestlarSoni, cnt);
+                Form4 obj = new Form4(IsmFamiliya, FanNomi, TestlarSoni, cnt1);
                 obj.Show();
                 this.Close();
             }
@@ -112,22 +121,26 @@ namespace QuizApp
             if (radioButton3.Checked) BelgilanganJavoblar[index] = radioButton3.Text;
             if (radioButton4.Checked) BelgilanganJavoblar[index] = radioButton4.Text;
 
-            int cnt = 0;
+            int cnt1 = 0;
+            int cnt2 = 0;
             for (int i = 0; i < TogriJavoblar.Length; i++)
             {
                 if (TogriJavoblar[i] == BelgilanganJavoblar[i])
                 {
                     trueResults.Add(i + 1, BelgilanganJavoblar[i]);
-                    cnt++;
+                    cnt1++;
                 }
                 else
                 {
                     falseResults.Add(i + 1, BelgilanganJavoblar[i]);
+                    cnt2++;
                 }
             }
 
+            True_cnt = cnt1;
+            False_cnt = cnt2;
             writeResults();
-            Form4 obj = new Form4(IsmFamiliya, FanNomi, TestlarSoni, cnt);
+            Form4 obj = new Form4(IsmFamiliya, FanNomi, TestlarSoni, cnt1);
             obj.Show();
             this.Close();
         }
@@ -166,22 +179,26 @@ namespace QuizApp
                 }
                 else
                 {
-                    int cnt = 0;
+                    int cnt1 = 0;
+                    int cnt2 = 0;
                     for (int i = 0; i < TogriJavoblar.Length; i++)
                     {
                         if (TogriJavoblar[i] == BelgilanganJavoblar[i])
                         {
                             trueResults.Add(i + 1, BelgilanganJavoblar[i]);
-                            cnt++;
+                            cnt1++;
                         }
                         else
                         {
                             falseResults.Add(i + 1, BelgilanganJavoblar[i]);
+                            cnt2++;
                         }
                     }
 
+                    True_cnt = cnt1;
+                    False_cnt = cnt2;
                     writeResults();
-                    Form4 obj = new Form4(IsmFamiliya, FanNomi, TestlarSoni, cnt);
+                    Form4 obj = new Form4(IsmFamiliya, FanNomi, TestlarSoni, cnt1);
                     obj.Show();
                     this.Close();
                 }
@@ -220,14 +237,105 @@ namespace QuizApp
             string quizAppPath = Path.Combine(userDocumentsPath, "QuizApp");
             string packagePath1 = Path.Combine(quizAppPath, "Results");
             string packagePath2 = Path.Combine(quizAppPath, "TrueAnswers");
+            string packagePath3 = Path.Combine(quizAppPath, "Natijalar");
             string path1 = Path.Combine(packagePath1, "trueResults.txt");
             string path2 = Path.Combine(packagePath1, "falseResults.txt");
             string path3 = Path.Combine(packagePath2, "TrueAnswers.txt");
+            string path4 = Path.Combine(packagePath3, $"{IsmFamiliya}.txt");
 
-            if (!Directory.Exists(packagePath2))
+            if (!Directory.Exists(packagePath3))
+            {
+                Directory.CreateDirectory(packagePath3);
+                if(!File.Exists(path4))
+                {
+                    StreamWriter writer4 = File.CreateText(path4);
+                    writer4.WriteLine($"Fan {FanNomi}, To'g'ri javoblar: {True_cnt}, Noto'g'ri javoblar: {False_cnt}, Ishlangan vaqti: {DateTime.Now}");
+                    writer4.WriteLine("====================");
+                    foreach (var result in trueResults)
+                    {
+                        writer4.WriteLine($"{result.Key}:{result.Value}");
+                    }
+                    writer4.WriteLine("====================");
+                    foreach (var result in falseResults)
+                    {
+                        writer4.WriteLine($"{result.Key}:{result.Value}");
+                    }
+                    writer4.WriteLine("====================");
+                    writer4.Close();
+                }
+                else
+                {
+                    StreamWriter writer4 = File.AppendText(path4);
+                    writer4.WriteLine($"Fan {FanNomi}, To'g'ri javoblar: {True_cnt}, Noto'g'ri javoblar: {False_cnt}, Ishlangan vaqti: {DateTime.Now}");
+                    writer4.WriteLine("====================");
+                    foreach (var result in trueResults)
+                    {
+                        writer4.WriteLine($"{result.Key}:{result.Value}");
+                    }
+                    writer4.WriteLine("====================");
+                    foreach (var result in falseResults)
+                    {
+                        writer4.WriteLine($"{result.Key}:{result.Value}");
+                    }
+                    writer4.WriteLine("====================");
+                    writer4.Close();
+                }
+            }
+            else
+            {
+                if (!File.Exists(path4))
+                {
+                    StreamWriter writer4 = File.CreateText(path4);
+                    writer4.WriteLine($"Fan {FanNomi}, To'g'ri javoblar: {True_cnt}, Noto'g'ri javoblar: {False_cnt}, Ishlangan vaqti: {DateTime.Now}");
+                    writer4.WriteLine("====================");
+                    foreach (var result in trueResults)
+                    {
+                        writer4.WriteLine($"{result.Key}:{result.Value}");
+                    }
+                    writer4.WriteLine("====================");
+                    foreach (var result in falseResults)
+                    {
+                        writer4.WriteLine($"{result.Key}:{result.Value}");
+                    }
+                    writer4.WriteLine("====================");
+                    writer4.Close();
+                }
+                else
+                {
+                    StreamWriter writer4 = File.AppendText(path4);
+                    writer4.WriteLine($"Fan {FanNomi}, To'g'ri javoblar: {True_cnt}, Noto'g'ri javoblar: {False_cnt}, Ishlangan vaqti: {DateTime.Now}");
+                    writer4.WriteLine("====================");
+                    foreach (var result in trueResults)
+                    {
+                        writer4.WriteLine($"{result.Key}:{result.Value}");
+                    }
+                    writer4.WriteLine("====================");
+                    foreach (var result in falseResults)
+                    {
+                        writer4.WriteLine($"{result.Key}:{result.Value}");
+                    }
+                    writer4.WriteLine("====================");
+                    writer4.Close();
+                }
+            }
+            /*if (!Directory.Exists(packagePath2))
             {
                 Directory.CreateDirectory(packagePath2);
-                if (File.Exists(path3))
+                if (!File.Exists(path3))
+                {
+                    StreamWriter writer = File.CreateText(path3);
+
+                    writer.WriteLine($"Fan:{FanNomi}");
+
+                    for (int i = 0; i < TogriJavoblar.Length; i++)
+                    {
+                        writer.WriteLine($"{i + 1}:{TogriJavoblar[i]}");
+                    }
+
+                    writer.WriteLine("====================");
+                    writer.Close();
+                }
+                else
                 {
                     StreamWriter writer = File.AppendText(path3);
 
@@ -241,21 +349,7 @@ namespace QuizApp
                     writer.WriteLine("====================");
                     writer.Close();
                 }
-                else
-                {
-                    StreamWriter writer = File.CreateText(path3);
-
-                    writer.WriteLine($"Fan:{FanNomi}");
-
-                    for (int i = 0; i <= TogriJavoblar.Length; i++)
-                    {
-                        writer.WriteLine($"{i + 1}:{TogriJavoblar[i]}");
-                    }
-
-                    writer.WriteLine("====================");
-                    writer.Close();
-                }
-            }
+            }*/
 
             if (!Directory.Exists(packagePath1))
             {
@@ -265,7 +359,7 @@ namespace QuizApp
                     StreamWriter writer1 = File.AppendText(path1);
                     StreamWriter writer2 = File.AppendText(path2);
 
-                    writer1.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, Testlar soni:{TestlarSoni}");
+                    writer1.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, To'g'ri javoblar soni:{True_cnt}");
 
                     foreach (var result in trueResults)
                     {
@@ -274,7 +368,7 @@ namespace QuizApp
                     writer1.WriteLine("====================");
                     writer1.Close();
 
-                    writer2.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, Testlar soni:{TestlarSoni}");
+                    writer2.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, Noto'g'ri javoblar soni:{False_cnt}");
                     foreach (var result in falseResults)
                     {
                         writer2.WriteLine($"{result.Key}:{result.Value}");
@@ -287,7 +381,7 @@ namespace QuizApp
                     StreamWriter writer1 = File.CreateText(path1);
                     StreamWriter writer2 = File.CreateText(path2);
 
-                    writer1.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, Testlar soni:{TestlarSoni}");
+                    writer1.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, To'g'ri javoblar soni:{True_cnt}");
 
                     foreach (var result in trueResults)
                     {
@@ -296,7 +390,7 @@ namespace QuizApp
                     writer1.WriteLine("====================");
                     writer1.Close();
 
-                    writer2.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, Testlar soni:{TestlarSoni}");
+                    writer2.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, Noto'g'ri javoblar soni:{False_cnt}");
                     foreach (var result in falseResults)
                     {
                         writer2.WriteLine($"{result.Key}:{result.Value}");
@@ -312,7 +406,7 @@ namespace QuizApp
                     StreamWriter writer1 = File.AppendText(path1);
                     StreamWriter writer2 = File.AppendText(path2);
 
-                    writer1.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, Testlar soni:{TestlarSoni}");
+                    writer1.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, To'g'ri javoblar soni:{True_cnt}.");
 
                     foreach (var result in trueResults)
                     {
@@ -321,7 +415,7 @@ namespace QuizApp
                     writer1.WriteLine("====================");
                     writer1.Close();
 
-                    writer2.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, Testlar soni:{TestlarSoni}");
+                    writer2.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, Noto'g'ri javoblar soni:{False_cnt}.");
                     foreach (var result in falseResults)
                     {
                         writer2.WriteLine($"{result.Key}:{result.Value}");
@@ -334,7 +428,7 @@ namespace QuizApp
                     StreamWriter writer1 = File.CreateText(path1);
                     StreamWriter writer2 = File.CreateText(path2);
 
-                    writer1.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, Testlar soni:{TestlarSoni}");
+                    writer1.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, To'g'ri javoblar soni:{True_cnt}.");
 
                     foreach (var result in trueResults)
                     {
@@ -343,7 +437,7 @@ namespace QuizApp
                     writer1.WriteLine("====================");
                     writer1.Close();
 
-                    writer2.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, Testlar soni:{TestlarSoni}");
+                    writer2.WriteLine($"Foydalanuvchi:{IsmFamiliya}, Fan:{FanNomi}, Noto'g'ri javoblar soni:{False_cnt}.");
                     foreach (var result in falseResults)
                     {
                         writer2.WriteLine($"{result.Key}:{result.Value}");
