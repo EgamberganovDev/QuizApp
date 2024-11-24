@@ -173,6 +173,7 @@
             Controls.Add(radioButton1);
             Controls.Add(listBox1);
             Name = "Form3";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Testlar Bo'limi";
             Load += Form3_Load;
             ResumeLayout(false);

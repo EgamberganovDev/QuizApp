@@ -22,19 +22,19 @@ namespace QuizApp
 
         private void Load_quiz_Click(object sender, EventArgs e)
         {
-            Form5 obj = new Form5();
+            AddQuizForm obj = new AddQuizForm();
             obj.Show();
         }
 
         private void Score_table_Click(object sender, EventArgs e)
         {
-            Form6 obj = new Form6();
+            Results obj = new Results();
             obj.Show();
         }
 
         private void about_Click(object sender, EventArgs e)
         {
-            Form7 obj = new Form7();
+            About obj = new About();
             obj.Show();
         }
     }

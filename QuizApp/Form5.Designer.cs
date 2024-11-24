@@ -1,6 +1,6 @@
 ﻿namespace QuizApp
 {
-    partial class Form5
+    partial class AddQuizForm
     {
         /// <summary>
         /// Required designer variable.
@@ -205,7 +205,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(579, 58);
+            comboBox1.Location = new Point(568, 58);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(187, 28);
             comboBox1.TabIndex = 16;
@@ -214,7 +214,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(579, 25);
+            label6.Location = new Point(562, 25);
             label6.Name = "label6";
             label6.Size = new Size(116, 30);
             label6.TabIndex = 17;
@@ -222,7 +222,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(579, 106);
+            button2.Location = new Point(568, 107);
             button2.Name = "button2";
             button2.Size = new Size(116, 29);
             button2.TabIndex = 18;
@@ -284,7 +284,7 @@
             // button5
             // 
             button5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button5.Location = new Point(579, 513);
+            button5.Location = new Point(568, 450);
             button5.Name = "button5";
             button5.Size = new Size(187, 36);
             button5.TabIndex = 20;
@@ -296,12 +296,12 @@
             // 
             openFileDialog1.FileName = "openFileDialog1";
             // 
-            // Form5
+            // AddQuizForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
-            ClientSize = new Size(800, 641);
+            ClientSize = new Size(802, 510);
             Controls.Add(button5);
             Controls.Add(panel1);
             Controls.Add(button2);
@@ -322,7 +322,8 @@
             Controls.Add(label2);
             Controls.Add(textBox1);
             Controls.Add(label1);
-            Name = "Form5";
+            Name = "AddQuizForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Test Qo'shish";
             Load += Form5_Load;
             panel1.ResumeLayout(false);

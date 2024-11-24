@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuizApp.models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,9 +12,9 @@ using System.Windows.Forms;
 
 namespace QuizApp
 {
-    public partial class Form5 : Form
+    public partial class AddQuizForm : Form
     {
-        public Form5()
+        public AddQuizForm()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
 ﻿namespace QuizApp
 {
-    partial class Form4
+    partial class Result
     {
         /// <summary>
         /// Required designer variable.
@@ -108,7 +108,7 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // Form4
+            // Result
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -121,8 +121,9 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Name = "Form4";
-            Text = "Form4";
+            Name = "Result";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Natija";
             Load += Form4_Load;
             ResumeLayout(false);
             PerformLayout();

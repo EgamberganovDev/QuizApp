@@ -128,6 +128,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "startQuizForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Testni boshlash";
             Load += startQuizForm_Load;
             ((System.ComponentModel.ISupportInitialize)numbersOfQuiz).EndInit();

@@ -52,7 +52,7 @@
             Load_quiz.Name = "Load_quiz";
             Load_quiz.Size = new Size(205, 56);
             Load_quiz.TabIndex = 1;
-            Load_quiz.Text = "Test Yuklash";
+            Load_quiz.Text = "Test Qo'shish";
             Load_quiz.UseVisualStyleBackColor = true;
             Load_quiz.Click += Load_quiz_Click;
             // 
@@ -88,6 +88,7 @@
             Controls.Add(Load_quiz);
             Controls.Add(Work_quiz);
             Name = "QuizApp";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "QuizApp";
             ResumeLayout(false);
         }

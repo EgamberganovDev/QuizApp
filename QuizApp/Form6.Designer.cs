@@ -1,6 +1,6 @@
 ﻿namespace QuizApp
 {
-    partial class Form6
+    partial class Results
     {
         /// <summary>
         /// Required designer variable.
@@ -62,7 +62,7 @@
             label1.TabIndex = 2;
             label1.Text = "Search";
             // 
-            // Form6
+            // Results
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -70,8 +70,9 @@
             Controls.Add(label1);
             Controls.Add(listBox1);
             Controls.Add(textBox1);
-            Name = "Form6";
-            Text = "Form6";
+            Name = "Results";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Natijalar";
             Load += Form6_Load;
             ResumeLayout(false);
             PerformLayout();

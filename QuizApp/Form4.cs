@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace QuizApp
 {
-    public partial class Form4 : Form
+    public partial class Result : Form
     {
         string IsmFamiliya;
         string Fan;
         int TestlarSoni;
         int TJ;
 
-        public Form4(string ismFamiliya, string fan, int testlarSoni, int tJ)
+        public Result(string ismFamiliya, string fan, int testlarSoni, int tJ)
         {
             InitializeComponent();
             IsmFamiliya = ismFamiliya;

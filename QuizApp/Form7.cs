@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace QuizApp
 {
-    public partial class Form7 : Form
+    public partial class About : Form
     {
-        public Form7()
+        public About()
         {
             InitializeComponent();
         }
@@ -20,6 +20,11 @@ namespace QuizApp
         private void Form7_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

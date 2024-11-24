@@ -57,7 +57,7 @@ namespace QuizApp
 
             int i = 0;
             string line;
-            while ((line = rd.ReadLine()) != null)
+            while ((line = rd.ReadLine()!) != null)
             {
                 if (i > s.Length - 1)
                 {
@@ -108,7 +108,7 @@ namespace QuizApp
                 True_cnt = cnt1;
                 False_cnt = cnt2;
                 writeResults();
-                Form4 obj = new Form4(IsmFamiliya, FanNomi, TestlarSoni, cnt1);
+                Result obj = new Result(IsmFamiliya, FanNomi, TestlarSoni, cnt1);
                 obj.Show();
                 this.Close();
             }
@@ -140,7 +140,9 @@ namespace QuizApp
             True_cnt = cnt1;
             False_cnt = cnt2;
             writeResults();
-            Form4 obj = new Form4(IsmFamiliya, FanNomi, TestlarSoni, cnt1);
+            trueResults.Clear();
+            falseResults.Clear();
+            Result obj = new Result(IsmFamiliya, FanNomi, TestlarSoni, cnt1);
             obj.Show();
             this.Close();
         }
@@ -198,7 +200,9 @@ namespace QuizApp
                     True_cnt = cnt1;
                     False_cnt = cnt2;
                     writeResults();
-                    Form4 obj = new Form4(IsmFamiliya, FanNomi, TestlarSoni, cnt1);
+                    trueResults.Clear();
+                    falseResults.Clear();
+                    Result obj = new Result(IsmFamiliya, FanNomi, TestlarSoni, cnt1);
                     obj.Show();
                     this.Close();
                 }
