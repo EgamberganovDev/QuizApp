@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuizApp.models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -45,13 +46,39 @@ namespace QuizApp
                 MessageBox.Show("Ism familiya yozilmagan yoki Fan tanlanmagan");
                 return;
             }
+
+            saveNewUser(fio.Text.ToString());
+
             string FIO = fio.Text.ToString();
-            string FAN = courses.SelectedItem.ToString()!;
+            string FAN = courses.SelectedItem.ToString();
             int test_soni = int.Parse(numbersOfQuiz.Value.ToString());
 
             Form3 obj = new Form3(FIO, FAN, test_soni, filepath);
             obj.Show();
             this.Close();
+        }
+
+        private void saveNewUser(string userName)
+        {
+            using (var context = new QuizAppContext())
+            {
+                // Foydalanuvchini qidirish
+                var existingUser = context.Users.FirstOrDefault(u => u.Name == userName);
+
+                if (existingUser != null)
+                {
+                    Console.WriteLine($"Foydalanuvchi mavjud: {existingUser.Name}");
+                    // Mavjud foydalanuvchi uchun boshqa amalni bajaring
+                }
+                else
+                {
+                    // Foydalanuvchi mavjud emas, yangi foydalanuvchi qo'shiladi
+                    var newUser = new User { Name = userName };
+                    context.Users.Add(newUser);
+                    context.SaveChanges();
+                    Console.WriteLine("Yangi foydalanuvchi qo'shildi!");
+                }
+            }
         }
 
         private void startQuizForm_Load(object sender, EventArgs e)
