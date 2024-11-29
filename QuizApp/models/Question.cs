@@ -10,6 +10,5 @@
         public string OptionC { get; set; }
         public string OptionD { get; set; }
         public int SubjectId { get; set; }
-        public Subject Subject { get; set; }
     }
 }

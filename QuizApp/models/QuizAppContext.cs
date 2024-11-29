@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic.ApplicationServices;
 
 namespace QuizApp.models
 {
@@ -13,15 +12,6 @@ namespace QuizApp.models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB; Database=QuizApp; Trusted_Connection=True;");
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Question>()
-                .HasOne(q => q.Subject)
-                .WithMany(s => s.Questions)
-                .HasForeignKey(q => q.SubjectId)
-                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -35,23 +35,19 @@ namespace QuizApp.Migrations
 
                     b.Property<string>("OptionA")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("OptionA");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OptionB")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("OptionB");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OptionC")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("OptionC");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OptionD")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("OptionD");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SubjectId")
                         .HasColumnType("int");
@@ -141,13 +137,11 @@ namespace QuizApp.Migrations
 
             modelBuilder.Entity("QuizApp.models.Question", b =>
                 {
-                    b.HasOne("QuizApp.models.Subject", "Subject")
+                    b.HasOne("QuizApp.models.Subject", null)
                         .WithMany("Questions")
                         .HasForeignKey("SubjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Subject");
                 });
 
             modelBuilder.Entity("QuizApp.models.TestSession", b =>

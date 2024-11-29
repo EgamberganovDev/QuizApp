@@ -166,107 +166,75 @@ namespace QuizApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(comboBox1.SelectedItem != null)
+            if (comboBox1.SelectedItem != null)
             {
                 using (var context = new QuizAppContext())
                 {
-                    if (checkBox1.Checked)
+                    void AddQuestion(string questionText, string correctAnswer, string optionA, string optionB, string optionC, string optionD)
                     {
-                        Question question = new Question();
-                        question.Text = richTextBox1.Text;
-                        question.CorrectAnswer = textBox1.Text;
-                        question.OptionA = textBox1.Text;
-                        question.OptionB = textBox2.Text;
-                        question.OptionC = textBox3.Text;
-                        question.OptionD = textBox4.Text;
-
-                        string subjectName = comboBox1.SelectedItem?.ToString() ?? string.Empty;
-                        var subjects = context.Subjects;
-                        foreach (var subject in subjects)
+                        var question = new Question
                         {
-                            if (subject.Name == subjectName)
-                            {
-                                question.SubjectId = subject.Id;
-                            }
-                        }
+                            Text = questionText,
+                            CorrectAnswer = correctAnswer,
+                            OptionA = optionA,
+                            OptionB = optionB,
+                            OptionC = optionC,
+                            OptionD = optionD,
+                            SubjectId = comboBox1.SelectedIndex
+                        };
 
                         context.Questions.Add(question);
-                        context.SaveChanges();
+                    }
+
+                    if (checkBox1.Checked)
+                    {
+                        AddQuestion(
+                            richTextBox1.Text,
+                            textBox1.Text,
+                            textBox1.Text,
+                            textBox2.Text,
+                            textBox3.Text,
+                            textBox4.Text);
                     }
 
                     if (checkBox2.Checked)
                     {
-                        Question question = new Question();
-                        question.Text = richTextBox1.Text;
-                        question.CorrectAnswer = textBox2.Text;
-                        question.OptionA = textBox1.Text;
-                        question.OptionB = textBox2.Text;
-                        question.OptionC = textBox3.Text;
-                        question.OptionD = textBox4.Text;
-
-                        string subjectName = comboBox1.SelectedItem?.ToString() ?? string.Empty;
-                        var subjects = context.Subjects;
-                        foreach (var subject in subjects)
-                        {
-                            if (subject.Name == subjectName)
-                            {
-                                question.SubjectId = subject.Id;
-                            }
-                        }
-
-                        context.Questions.Add(question);
-                        context.SaveChanges();
+                        AddQuestion(
+                            richTextBox1.Text,
+                            textBox2.Text,
+                            textBox1.Text,
+                            textBox2.Text,
+                            textBox3.Text,
+                            textBox4.Text);
                     }
 
                     if (checkBox3.Checked)
                     {
-                        Question question = new Question();
-                        question.Text = richTextBox1.Text;
-                        question.CorrectAnswer = textBox3.Text;
-                        question.OptionA = textBox1.Text;
-                        question.OptionB = textBox2.Text;
-                        question.OptionC = textBox3.Text;
-                        question.OptionD = textBox4.Text;
-
-                        string subjectName = comboBox1.SelectedItem?.ToString() ?? string.Empty;
-                        var subjects = context.Subjects;
-                        foreach (var subject in subjects)
-                        {
-                            if (subject.Name == subjectName)
-                            {
-                                question.SubjectId = subject.Id;
-                            }
-                        }
-
-                        context.Questions.Add(question);
-                        context.SaveChanges();
+                        AddQuestion(
+                            richTextBox1.Text,
+                            textBox3.Text,
+                            textBox1.Text,
+                            textBox2.Text,
+                            textBox3.Text,
+                            textBox4.Text);
                     }
 
                     if (checkBox4.Checked)
                     {
-                        Question question = new Question();
-                        question.Text = richTextBox1.Text;
-                        question.CorrectAnswer = textBox4.Text;
-                        question.OptionA = textBox1.Text;
-                        question.OptionB = textBox2.Text;
-                        question.OptionC = textBox3.Text;
-                        question.OptionD = textBox4.Text;
-
-                        string subjectName = comboBox1.SelectedItem?.ToString() ?? string.Empty;
-                        var subjects = context.Subjects;
-                        foreach (var subject in subjects)
-                        {
-                            if (subject.Name == subjectName)
-                            {
-                                question.SubjectId = subject.Id;
-                            }
-                        }
-
-                        context.Questions.Add(question);
-                        context.SaveChanges();
+                        AddQuestion(
+                            richTextBox1.Text,
+                            textBox4.Text,
+                            textBox1.Text,
+                            textBox2.Text,
+                            textBox3.Text,
+                            textBox4.Text);
                     }
+
+                    context.SaveChanges();
+                    MessageBox.Show("Ma'lumot bazaga joylandi");
                 }
 
+                // Formni tozalash
                 comboBox1.ResetText();
                 richTextBox1.Clear();
                 textBox1.Clear();
@@ -275,7 +243,7 @@ namespace QuizApp
                 textBox4.Clear();
                 updateComboBox();
             }
-            else 
+            else
             {
                 MessageBox.Show("Fan tanlanmagan! Iltimos oldin fan tanlang");
             }
