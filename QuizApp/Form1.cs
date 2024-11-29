@@ -4,13 +4,6 @@ namespace QuizApp
     {
         public QuizApp()
         {
-            string myDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string quizAppFolderPath = Path.Combine(myDocumentsPath, "QuizApp");
-
-            if (!Directory.Exists(quizAppFolderPath))
-            {
-                Directory.CreateDirectory(quizAppFolderPath);
-            }
             InitializeComponent();
         }
 

@@ -11,8 +11,8 @@ using QuizApp.models;
 namespace QuizApp.Migrations
 {
     [DbContext(typeof(QuizAppContext))]
-    [Migration("20241125045545_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20241127152029_first")]
+    partial class first
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,9 +36,25 @@ namespace QuizApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Options")
+                    b.Property<string>("OptionA")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("OptionA");
+
+                    b.Property<string>("OptionB")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("OptionB");
+
+                    b.Property<string>("OptionC")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("OptionC");
+
+                    b.Property<string>("OptionD")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("OptionD");
 
                     b.Property<int>("SubjectId")
                         .HasColumnType("int");

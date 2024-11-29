@@ -33,9 +33,25 @@ namespace QuizApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Options")
+                    b.Property<string>("OptionA")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("OptionA");
+
+                    b.Property<string>("OptionB")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("OptionB");
+
+                    b.Property<string>("OptionC")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("OptionC");
+
+                    b.Property<string>("OptionD")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("OptionD");
 
                     b.Property<int>("SubjectId")
                         .HasColumnType("int");

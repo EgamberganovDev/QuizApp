@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuizApp.models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,7 +19,6 @@ namespace QuizApp
         private string IsmFamiliya;
         private string FanNomi;
         private int TestlarSoni;
-        private string filePath;
 
         private static int index;
         private static int True_cnt;
@@ -30,14 +30,14 @@ namespace QuizApp
         private static string[] BelgilanganJavoblar;
         private static Dictionary<int, string> trueResults = new Dictionary<int, string>();
         private static Dictionary<int, string> falseResults = new Dictionary<int, string>();
+        private static QuizAppContext context = new QuizAppContext();
 
-        public Form3(string fio, string fan, int test_soni, string filepath)
+        public Form3(string fio, string fan, int test_soni)
         {
             InitializeComponent();
             IsmFamiliya = fio;
             FanNomi = fan;
             TestlarSoni = test_soni;
-            filePath = filepath;
 
             s = new string[TestlarSoni * 5];
             TogriJavoblar = new string[TestlarSoni];
@@ -50,66 +50,23 @@ namespace QuizApp
             index = 0;
             True_cnt = 0;
             False_cnt = 0;
+            List<Question> questions = context.Questions.ToList();
 
             if (index == 0) button1.Enabled = false;
-
-            StreamReader rd = new StreamReader(filePath);
-
-            int i = 0;
-            string line;
-            while ((line = rd.ReadLine()!) != null)
-            {
-                if (i > s.Length - 1)
-                {
-                    break;
-                }
-                else
-                {
-                    s[i] = line;
-                    if (s[i].StartsWith('*'))
-                    {
-                        s[i] = s[i].Substring(1, s[i].Length - 1);
-                        TogriJavoblar[(int)(i / 5)] = s[i];
-                    }
-                    i++;
-                }
-            }
-            rd.Close();
 
             if (index < TestlarSoni)
             {
                 label1.Text = "Savol " + (index + 1).ToString();
                 listBox1.Items.Clear();
 
-                listBox1.Items.Add(s[5 * index]);
-                radioButton1.Text = s[5 * index + 1];
-                radioButton2.Text = s[5 * index + 2];
-                radioButton3.Text = s[5 * index + 3];
-                radioButton4.Text = s[5 * index + 4];
+                listBox1.Items.Add(questions[index].Text);
+                radioButton1.Text = questions[index].OptionA;
+                radioButton2.Text = questions[index].OptionB;
+                radioButton3.Text = questions[index].OptionC;
+                radioButton4.Text = questions[index].OptionD;
             }
             else
             {
-                int cnt1 = 0;
-                int cnt2 = 0;
-                for (int j = 0; j < TogriJavoblar.Length; i++)
-                {
-                    if (TogriJavoblar[j] == BelgilanganJavoblar[j])
-                    {
-                        trueResults.Add(i + 1, BelgilanganJavoblar[i]);
-                        cnt1++;
-                    }
-                    else
-                    {
-                        falseResults.Add(i + 1, BelgilanganJavoblar[i]);
-                        cnt2++;
-                    }
-                }
-
-                True_cnt = cnt1;
-                False_cnt = cnt2;
-                writeResults();
-                Result obj = new Result(IsmFamiliya, FanNomi, TestlarSoni, cnt1);
-                obj.Show();
                 this.Close();
             }
         }

@@ -59,7 +59,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI", 12F);
             label1.ForeColor = SystemColors.ControlText;
             label1.Location = new Point(63, 107);
             label1.Name = "label1";
@@ -78,7 +78,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Font = new Font("Segoe UI", 12F);
             label2.Location = new Point(51, 211);
             label2.Name = "label2";
             label2.Size = new Size(95, 28);
@@ -88,7 +88,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Font = new Font("Segoe UI", 12F);
             label3.Location = new Point(51, 253);
             label3.Name = "label3";
             label3.Size = new Size(93, 28);
@@ -98,7 +98,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Font = new Font("Segoe UI", 12F);
             label4.Location = new Point(51, 296);
             label4.Name = "label4";
             label4.Size = new Size(94, 28);
@@ -108,7 +108,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Font = new Font("Segoe UI", 12F);
             label5.Location = new Point(53, 343);
             label5.Name = "label5";
             label5.Size = new Size(96, 28);
@@ -185,7 +185,7 @@
             // 
             // button1
             // 
-            button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             button1.Location = new Point(161, 406);
             button1.Name = "button1";
             button1.Size = new Size(198, 48);
@@ -213,7 +213,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Font = new Font("Segoe UI", 13F);
             label6.Location = new Point(562, 25);
             label6.Name = "label6";
             label6.Size = new Size(116, 30);
@@ -243,7 +243,7 @@
             // 
             // button4
             // 
-            button4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            button4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             button4.Location = new Point(130, 115);
             button4.Name = "button4";
             button4.Size = new Size(94, 29);
@@ -254,7 +254,7 @@
             // 
             // button3
             // 
-            button3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            button3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             button3.Location = new Point(23, 115);
             button3.Name = "button3";
             button3.Size = new Size(94, 29);
@@ -274,7 +274,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             label7.Location = new Point(23, 20);
             label7.Name = "label7";
             label7.Size = new Size(89, 25);
@@ -283,7 +283,7 @@
             // 
             // button5
             // 
-            button5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            button5.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button5.Location = new Point(568, 450);
             button5.Name = "button5";
             button5.Size = new Size(187, 36);

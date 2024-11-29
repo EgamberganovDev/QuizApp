@@ -18,11 +18,10 @@ namespace QuizApp.models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Question>()
-                .Property(q => q.Options)
-                .HasConversion(
-                    v => string.Join(',', v),
-                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList()
-                );
+                .HasOne(q => q.Subject)
+                .WithMany(s => s.Questions)
+                .HasForeignKey(q => q.SubjectId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

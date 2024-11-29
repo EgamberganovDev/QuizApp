@@ -15,30 +15,14 @@ namespace QuizApp
 {
     public partial class startQuizForm : Form
     {
-        private string filepath;
-        private int testSoni;
-
         public startQuizForm()
         {
             InitializeComponent();
         }
 
-        static int CountLinesInFile(string filePath)
-        {
-            int lineCount = 0;
-
-            StreamReader reader = new StreamReader(filePath);
-            while (reader.ReadLine() != null)
-            {
-                lineCount++;
-            }
-
-            return lineCount;
-        }
-
         private void start_quiz_Click(object sender, EventArgs e)
         {
-            if(fio.Text.Length == 0 && courses.SelectedIndex == -1 && numbersOfQuiz.Value == 0
+            if (fio.Text.Length == 0 && courses.SelectedIndex == -1 && numbersOfQuiz.Value == 0
                 || fio.Text.Length != 0 && courses.SelectedIndex == -1 && numbersOfQuiz.Value == 0
                 || fio.Text.Length == 0 && courses.SelectedIndex != -1 && numbersOfQuiz.Value == 0
                 || fio.Text.Length == 0 && courses.SelectedIndex == -1 && numbersOfQuiz.Value != 0)
@@ -53,7 +37,7 @@ namespace QuizApp
             string FAN = courses.SelectedItem.ToString();
             int test_soni = int.Parse(numbersOfQuiz.Value.ToString());
 
-            Form3 obj = new Form3(FIO, FAN, test_soni, filepath);
+            Form3 obj = new Form3(FIO, FAN, test_soni);
             obj.Show();
             this.Close();
         }
@@ -83,24 +67,25 @@ namespace QuizApp
 
         private void startQuizForm_Load(object sender, EventArgs e)
         {
-            string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string quizAppPath = Path.Combine(userDocumentsPath, "QuizApp");
-            string testsDirectory = Path.Combine(quizAppPath, "Testlar");
-            DirectoryInfo di = new DirectoryInfo(testsDirectory);
-            foreach (var fi in di.GetFiles())
-            {
-                filepath = fi.FullName;
-                if (fi.Name.EndsWith(".txt"))
-                    courses.Items.Add(fi.Name.Substring(0, fi.Name.Length - 4));
-            }
-
-            testSoni = CountLinesInFile(filepath) / 5;
-            numbersOfQuiz.Maximum = testSoni;
+            loadSubjects();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        public void loadSubjects()
+        {
+            using (var context = new QuizAppContext())
+            {
+                courses.Items.Clear();
+                var subjects = context.Subjects.ToList();
+                foreach (var subject in subjects)
+                {
+                    courses.Items.Add(subject.Name);
+                }
+            }
         }
     }
 }
