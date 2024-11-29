@@ -149,14 +149,14 @@ namespace QuizApp
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                
+
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedItem != null)
-            {7
+            {
                 using (var context = new QuizAppContext())
                 {
                     void AddQuestion(string questionText, string correctAnswer, string optionA, string optionB, string optionC, string optionD)
@@ -220,10 +220,9 @@ namespace QuizApp
                     }
 
                     context.SaveChanges();
-                    MessageBox.Show("Ma'lumot bazaga muvaffaqiyatli joylandi");
+                    MessageBox.Show("Ma'lumot bazaga muvaffaqiyatli yuklandi");
                 }
 
-                // Formni tozalash
                 comboBox1.ResetText();
                 richTextBox1.Clear();
                 textBox1.Clear();
