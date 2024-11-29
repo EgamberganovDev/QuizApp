@@ -143,13 +143,52 @@ namespace QuizApp
 
         private void button5_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Filter = "Text Files (*.txt)|*.txt";
-            openFileDialog1.Title = "Bir TXT fayl tanlang";
-            openFileDialog1.FileName = "";
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            using (var context = new QuizAppContext())
             {
+                var subjects = context.Subjects;
+                List<Question> questions = new List<Question>();
 
+                openFileDialog1.Filter = "Text Files (*.txt)|*.txt";
+                openFileDialog1.Title = "Bir TXT fayl tanlang";
+                openFileDialog1.FileName = "";
+
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    string filepath = openFileDialog1.FileName;
+                    try
+                    {
+                        string[] lines = File.ReadAllLines(filepath);
+                        for (int i = 0; i < lines.Length; i += 6)
+                        {
+                            if (i + 5 < lines.Length)
+                            {
+                                string questionText = lines[i].Trim();
+                                string correctAnswer = "";
+
+                                string optionA = ProcessOption(lines[i + 1], ref correctAnswer);
+                                string optionB = ProcessOption(lines[i + 2], ref correctAnswer);
+                                string optionC = ProcessOption(lines[i + 3], ref correctAnswer);
+                                string optionD = ProcessOption(lines[i + 4], ref correctAnswer);
+
+                                var subject = subjects.FirstOrDefault(s => s.Name == lines[i + 5]);
+                                
+                                Question question = new Question();
+                                question.Text = questionText;
+                                question.CorrectAnswer = correctAnswer;
+                                question.OptionA = optionA;
+                                question.OptionB = optionB;
+                                question.OptionC = optionC;
+                                question.OptionD = optionD;
+                                question.SubjectId = subject!.Id;
+                                questions.Add(question);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Fayldan ma'lumotlarni o'qishda xatolik yuz berdi! {ex.Message}");
+                    }
+                }
             }
         }
 
@@ -235,6 +274,16 @@ namespace QuizApp
             {
                 MessageBox.Show("Fan tanlanmagan! Iltimos oldin fan tanlang");
             }
+        }
+
+        private string ProcessOption(string option, ref string correctAnswer)
+        {
+            if (option.StartsWith("*"))
+            {
+                correctAnswer = option.Substring(1).Trim();
+                return correctAnswer;
+            }
+            return option.Trim();
         }
     }
 }
