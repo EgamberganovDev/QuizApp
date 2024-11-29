@@ -149,25 +149,14 @@ namespace QuizApp
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                string selectedFilePath = openFileDialog1.FileName;
-                string userDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                string quizAppPath = Path.Combine(userDocumentsPath, "QuizApp");
-                string targetDirectory = Path.Combine(quizAppPath, "Testlar");
-                string targetFilePath = Path.Combine(targetDirectory, Path.GetFileName(selectedFilePath));
-
-                if (!Directory.Exists(targetDirectory))
-                {
-                    Directory.CreateDirectory(targetDirectory);
-                    File.Copy(selectedFilePath, targetFilePath, true);
-                }
-                else File.Copy(selectedFilePath, targetFilePath, true);
+                
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedItem != null)
-            {
+            {7
                 using (var context = new QuizAppContext())
                 {
                     void AddQuestion(string questionText, string correctAnswer, string optionA, string optionB, string optionC, string optionD)
@@ -180,7 +169,7 @@ namespace QuizApp
                             OptionB = optionB,
                             OptionC = optionC,
                             OptionD = optionD,
-                            SubjectId = comboBox1.SelectedIndex
+                            SubjectId = comboBox1.SelectedIndex + 1
                         };
 
                         context.Questions.Add(question);
@@ -231,7 +220,7 @@ namespace QuizApp
                     }
 
                     context.SaveChanges();
-                    MessageBox.Show("Ma'lumot bazaga joylandi");
+                    MessageBox.Show("Ma'lumot bazaga muvaffaqiyatli joylandi");
                 }
 
                 // Formni tozalash
