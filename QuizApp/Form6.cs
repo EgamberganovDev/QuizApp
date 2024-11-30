@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuizApp.models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,11 +20,26 @@ namespace QuizApp
 
         private void Form6_Load(object sender, EventArgs e)
         {
-            MyReader nameReader = new MyReader();
-            List<string> names = nameReader.userNames();
-            foreach (string name in names)
+            using (var context = new QuizAppContext())
             {
-                listBox1.Items.Add(name);
+                dataGridView1.RowHeadersVisible = false;
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+                var sessions = context.TestSessions
+                    .Select(s => new
+                    {
+                        s.Id,
+                        User = context.Users.Where(u => u.Id == s.UserId).Select(u => u.Name).FirstOrDefault(),
+                        Subject = context.Subjects.Where(sub => sub.Id == s.SubjectId).Select(sub => sub.Name).FirstOrDefault(),
+                        s.QuestionCount,
+                        s.CorrectAnswers,
+                        s.IncorrectAnswers,
+                        s.ScorePercentage,
+                        s.Grade
+                    })
+                    .ToList();
+
+                dataGridView1.DataSource = sessions;
             }
         }
     }

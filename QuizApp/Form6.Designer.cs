@@ -29,51 +29,67 @@
         private void InitializeComponent()
         {
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            textBox1 = new TextBox();
-            listBox1 = new ListBox();
-            label1 = new Label();
+            dataGridView1 = new DataGridView();
+            menuStrip1 = new MenuStrip();
+            searchToolStripMenuItem = new ToolStripMenuItem();
+            toolStripTextBox1 = new ToolStripTextBox();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
-            // textBox1
+            // dataGridView1
             // 
-            textBox1.Location = new Point(103, 22);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(342, 34);
-            textBox1.TabIndex = 0;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 31);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(860, 502);
+            dataGridView1.TabIndex = 3;
             // 
-            // listBox1
+            // menuStrip1
             // 
-            listBox1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 23;
-            listBox1.Location = new Point(12, 74);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(776, 441);
-            listBox1.TabIndex = 1;
+            menuStrip1.BackColor = SystemColors.Control;
+            menuStrip1.ImageScalingSize = new Size(20, 20);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { searchToolStripMenuItem, toolStripTextBox1 });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(860, 31);
+            menuStrip1.TabIndex = 4;
+            menuStrip1.Text = "menuStrip1";
             // 
-            // label1
+            // searchToolStripMenuItem
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(12, 22);
-            label1.Name = "label1";
-            label1.Size = new Size(75, 28);
-            label1.TabIndex = 2;
-            label1.Text = "Search";
+            searchToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            searchToolStripMenuItem.Enabled = false;
+            searchToolStripMenuItem.Font = new Font("Times New Roman", 11F, FontStyle.Bold);
+            searchToolStripMenuItem.Name = "searchToolStripMenuItem";
+            searchToolStripMenuItem.Size = new Size(81, 27);
+            searchToolStripMenuItem.Text = "Search";
+            // 
+            // toolStripTextBox1
+            // 
+            toolStripTextBox1.Name = "toolStripTextBox1";
+            toolStripTextBox1.Size = new Size(200, 27);
             // 
             // Results
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 530);
-            Controls.Add(label1);
-            Controls.Add(listBox1);
-            Controls.Add(textBox1);
+            ClientSize = new Size(860, 533);
+            Controls.Add(dataGridView1);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             Name = "Results";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Natijalar";
             Load += Form6_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -81,8 +97,9 @@
         #endregion
 
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private TextBox textBox1;
-        private ListBox listBox1;
-        private Label label1;
+        private DataGridView dataGridView1;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem searchToolStripMenuItem;
+        private ToolStripTextBox toolStripTextBox1;
     }
 }

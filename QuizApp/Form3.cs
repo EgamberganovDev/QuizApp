@@ -25,7 +25,6 @@ namespace QuizApp
         private static int False_cnt;
         private static string[] s;
 
-        MyReader mr = new MyReader();
         private static string[] TogriJavoblar;
         private static string[] BelgilanganJavoblar;
         private static Dictionary<int, string> trueResults = new Dictionary<int, string>();
