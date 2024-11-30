@@ -52,11 +52,9 @@ namespace QuizApp
                 if (existingUser != null)
                 {
                     Console.WriteLine($"Foydalanuvchi mavjud: {existingUser.Name}");
-                    // Mavjud foydalanuvchi uchun boshqa amalni bajaring
                 }
                 else
                 {
-                    // Foydalanuvchi mavjud emas, yangi foydalanuvchi qo'shiladi
                     var newUser = new User { Name = userName };
                     context.Users.Add(newUser);
                     context.SaveChanges();

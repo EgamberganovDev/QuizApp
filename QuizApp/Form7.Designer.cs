@@ -52,8 +52,8 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Times New Roman", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.BackColor = SystemColors.Control;
+            label1.Font = new Font("Times New Roman", 11F, FontStyle.Bold);
             label1.Location = new Point(200, 85);
             label1.Name = "label1";
             label1.Size = new Size(342, 26);
@@ -66,8 +66,8 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Times New Roman", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.BackColor = SystemColors.Control;
+            label2.Font = new Font("Times New Roman", 11F, FontStyle.Bold);
             label2.Location = new Point(150, 110);
             label2.Name = "label2";
             label2.Size = new Size(449, 26);
@@ -80,8 +80,8 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Times New Roman", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.BackColor = SystemColors.Control;
+            label3.Font = new Font("Times New Roman", 11F, FontStyle.Bold);
             label3.Location = new Point(150, 135);
             label3.Name = "label3";
             label3.Size = new Size(446, 26);
@@ -94,8 +94,8 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.BackColor = SystemColors.Control;
+            label4.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
             label4.Location = new Point(15, 392);
             label4.Name = "label4";
             label4.Size = new Size(260, 22);
@@ -108,8 +108,8 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.BackColor = SystemColors.Control;
+            label5.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
             label5.Location = new Point(18, 412);
             label5.Name = "label5";
             label5.Size = new Size(96, 22);
